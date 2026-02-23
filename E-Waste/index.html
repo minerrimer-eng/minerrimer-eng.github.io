@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E‑waste · two images & facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f3f5f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+            color: #1e2b2f;
+        }
+        .page-card {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 20, 10, 0.12);
+            overflow: hidden;
+            padding: 2.5rem 2rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #1f3e3f;
+            margin-bottom: 1.8rem;
+            border-left: 8px solid #57a38b;
+            padding-left: 1.4rem;
+        }
+        .intro-fact {
+            background: #eaf4ef;
+            border-radius: 1.6rem;
+            padding: 1.6rem 2rem;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            border: 1px solid #c0dbd1;
+            box-shadow: 0 4px 8px rgba(0,40,30,0.03);
+        }
+        .intro-fact strong {
+            color: #216b5a;
+            font-weight: 600;
+        }
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2.8rem 0 2.4rem;
+        }
+        .image-card {
+            flex: 1 1 300px;
+            min-width: 280px;
+            max-width: 500px;
+            background: #fafefc;
+            border-radius: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 32, 16, 0.06);
+            overflow: hidden;
+            transition: transform 0.1s ease;
+            border: 1px solid #dde9e3;
+            display: flex;
+            flex-direction: column;
+        }
+        .image-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 12px 28px rgba(38, 89, 70, 0.12);
+        }
+        .image-display {
+            width: 100%;
+            background: #d5e3dc;   /* soft background while image loads */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 240px;
+            max-height: 320px;
+            overflow: hidden;
+            border-bottom: 2px solid #9ebfaf;
+        }
+        .image-display img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;      /* keeps aspect ratio, covers area nicely */
+            display: block;
+            transition: opacity 0.2s;
+            background: #ebf3ef;    /* only visible if image has transparency */
+        }
+        /* subtle fallback text if images are missing – shows filename */
+        .image-display img[alt] {
+            text-align: center;
+            font-size: 1rem;
+            color: #2b5a4b;
+        }
+        .img-caption {
+            background: white;
+            padding: 1rem 1.5rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 1rem;
+            border-top: 1px solid #cbdcd2;
+            color: #1d4e41;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .img-caption span {
+            background: #e2efe8;
+            padding: 0.25rem 1rem 0.25rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            color: #0b3f33;
+        }
+        .img-caption:before {
+            content: "🖼️";
+            font-size: 1.3rem;
+            filter: drop-shadow(0 2px 2px #9eb);
+        }
+        .fact-block {
+            margin-top: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .fact-item {
+            background: #f2f9f5;
+            padding: 1rem 1.8rem;
+            border-radius: 60px 20px 20px 60px;
+            border-left: 10px solid #418a74;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: 0.1s;
+        }
+        .fact-item:hover {
+            background: #e5f2eb;
+        }
+        .fact-item:before {
+            content: "⚡";
+            margin-right: 0.6rem;
+            font-size: 1.3rem;
+            opacity: 0.8;
+        }
+        .highlight {
+            background-color: #ffe9d1;
+            font-weight: 500;
+            padding: 0.1rem 0.3rem;
+            border-radius: 12px;
+            color: #7b4d1d;
+        }
+        hr {
+            border: none;
+            border-top: 2px dotted #b0cfc0;
+            margin: 2rem 0 1.5rem;
+        }
+        .footer-note {
+            font-size: 0.95rem;
+            color: #4f6a61;
+            background: #ecf6f1;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        /* message if images can't be loaded (very rare) */
+        .image-display img[alt] {
+            font-style: italic;
+            color: #3f685a;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-card">
+        <h1>📱 Do you really need a new phone?</h1>
+
+        <!-- introductory paragraph from brief (first lines) -->
+        <div class="intro-fact">
+            <strong>Discarded electronic and electrical equipment</strong> such as mobile phones and computers is <strong>E‑waste</strong>.<br>
+            E‑waste is the fastest growing global waste stream. It contains valuable metals, which is logical to recycle in a sustainable way.
+        </div>
+
+        <!-- two images with filename as caption – images loaded from same folder -->
+        <div class="image-grid">
+            <!-- figure 1: e-waste_fig1.png -->
+            <div class="image-card">
+                <div class="image-display">
+                    <img src="e-waste_fig1.png" 
+                         alt="e-waste_fig1.png" 
+                         title="e-waste_fig1.png"
+                         onerror="this.style.backgroundColor='#f0d9cf'; this.alt='⚠️ image not found: e-waste_fig1.png';">
+                </div>
+                <div class="img-caption">
+                    <span>E-waste handling under sub-standard conditions near Lagos, Nigeria (photo: Leiv K. Sydnes)</span> <!-- explicit filename below -->
+                </div>
+            </div>
+
+            <!-- figure 2: e-waste_fig2.png -->
+            <div class="image-card">
+                <div class="image-display">
+                    <img src="e-waste_fig2.png" 
+                         alt="e-waste_fig2.png" 
+                         title="e-waste_fig2.png"
+                         onerror="this.style.backgroundColor='#f0d9cf'; this.alt='⚠️ image not found: e-waste_fig2.png';">
+                </div>
+                <div class="img-caption">
+                    <span>Typical handling of waste from computers and televisions in Ghana (from https://www.wired.com/story/international-electronic-waste-photographs)</span> <!-- filename again as text -->
+                </div>
+            </div>
+        </div>
+
+        <!-- all the remaining bullet-like facts (preserving exact wording) -->
+        <div class="fact-block">
+            <div class="fact-item">Over 50% disappears and often re-emerges in African countries.</div>
+            <div class="fact-item">In 2022 from a globally estimated 62 million tonnes of e-waste, formally just <span class="highlight">22.3%</span> was documented as collected and recycled.</div>
+            <div class="fact-item">In Africa it is handled inadequately with substandard working conditions.</div>
+            <div class="fact-item">E-waste recycling in Africa has a considerable environmental impact. Large areas of fertile land has become useless, and massive clean-up operations are needed before the land can again be returned to agricultural purposes.</div>
+            <div class="fact-item">Toxic materials known to cause harm to human health are released when e-waste is handled inappropriately.</div>
+            <div class="fact-item">Particularly vulnerable are <span class="highlight">Children and pregnant women</span>.</div>
+            <div class="fact-item">It is estimated that millions of women and child labourers may be at risk of hazardous e-waste exposures due to working globally in the informal recycling sector.</div>
+        </div>
+
+        <!-- subtle line + reminder of image filenames (both shown) -->
+        <hr>
+        <div class="footer-note">
+            ⏺ Further reading on topic: <a href="https://www.who.int/news-room/facts-in-pictures/detail/e-waste-and-child-health">E-waste and Child Health</a> • <a href="https://iupac.org/e-waste/">E-waste: A Global Threat</a>.
+        </div>
+    </div>
+
+    <!-- small note: both images are loaded from local folder. Captions always show filenames -->
+</body>
+</html>
